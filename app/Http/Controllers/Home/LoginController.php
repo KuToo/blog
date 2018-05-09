@@ -24,14 +24,21 @@ class LoginController extends Controller
      * @DateTime  2018-05-07
      * @param     string     $value [description]
      */
-    public function toLogin(Request $request)
+    public function toLogin()
     {
-        if($request->isMethod('post')){
-            //参数校验
-            
+        //验证
+        $this->validate(request(),[
+            'email'=>'required|email',
+            'password'=>'required|min:5',
+            'is_remember'=>'integer',
+        ]);
+        //业务逻辑
+        $user=request(['email','password']);
+        $is_remember=request('is_remember');
+        if(\Auth::attempt($user,$is_remember)){
+            return redirect('/');
         }
-        dd($request);
-        dd($request);
+        return \Redirect::back()->withErrors('邮箱密码不匹配');        
     }
     /**
      * [logout 退出登录]
@@ -41,10 +48,8 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        if ($request->session()->exists('user.id')) {
-            // session(['login'=>null]);
-            $request->session()->forget('user');
-        }
+        \Auth::logout();
+        return redirect('/login');
     }
     /**
      * [register 注册页面]
@@ -65,18 +70,16 @@ class LoginController extends Controller
     public function toRegister()
     {
         //验证
-        // dd($request);
         $this->validate(request(),[
             'name'=>'required|min:3|unique:users,name',
             'email'=>'required|email|unique:users,email',
-            'psaaword'=>'required|min:5|confirmed',
+            'password'=>'required|min:5|confirmed',
         ]);
         //业务逻辑
-        $name=$request->input('name');
-        $email=$request->input('email');
-        $password=bcrypt($request->input('password'));
+        $name=request('name');
+        $email=request('email');
+        $password=bcrypt(request('password'));
         $res=User::create(compact('name','email','password'));
-        dd($res);
         //渲染
         return redirect('/login');
     }

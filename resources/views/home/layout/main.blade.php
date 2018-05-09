@@ -22,9 +22,6 @@
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
 
     <![endif]-->
-    @section('addcss')
-        这是增加的css
-    @show
 </head>
 
 <body>
@@ -47,8 +44,5 @@
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/wangEditor.min.js"></script>
 <script src="js/ylaravel.js"></script>
-@section('addjs')
-    这是增加的js
-@show
 </body>
 </html>

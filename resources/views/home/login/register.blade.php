@@ -43,6 +43,7 @@
         <input type="password" name="password" id="inputPassword" class="form-control" placeholder="输入密码" required>
         <label class="sr-only">重复密码</label>
         <input type="password" name="password_confirmation" class="form-control" placeholder="重复输入密码" required>
+        @include('home.layout.error')
         <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
         <a href="/login" class="btn btn-lg btn-primary btn-block" type="submit">已有账号去登陆</a>
     </form>

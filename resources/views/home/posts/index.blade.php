@@ -1,9 +1,5 @@
 @extends('home.layout.main')
 @section('title', 'Page Title')
-@section('addcss')
-@endsection
-@section('addjs')
-@endsection
 @section('content')
     <div class="col-sm-8">
         <blockquote>
@@ -24,7 +20,7 @@
                 <div class="tab-pane active" id="tab_1">
                     @foreach($posts as $post)   
                         <div class="blog-post" style="margin-top: 30px">
-                            <p class=""><a href="/user/5">Kassandra Ankunding2</a> {{$post->created_at->toFormattedDateString()}}</p>
+                            <p class=""><a href="/user/{{$post->user->id}}">{{$post->user->name}}</a> {{$post->created_at->toFormattedDateString()}}</p>
                             <p class=""><a href="/post/{{$post->id}}" >{{$post->title}}</a></p>
                             <p>{{str_limit($post->content,100,'...')}}</p>
                         </div>

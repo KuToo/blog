@@ -1,9 +1,5 @@
 @extends('home.layout.main')
 @section('title', 'Page Title')
-@section('addcss')
-@endsection
-@section('addjs')
-@endsection
 @section('content')
     <div class="col-sm-8 blog-main">
         <form action="/postadd" method="POST">
